@@ -42,12 +42,18 @@
             ];
 
 const add =(a,b) =>a+b;
+
 const sum = curry((f, iter) =>go(
     iter,
     map(f),
     reduce(add)));
 
             // 총수량
+                go(products,
+                map(p=>p.quantity),
+                reduce((a,b)=> a+b),
+                log);
+
             const total_quantity = pipe(
             map(p=>p.quantity),
             reduce(add));
@@ -79,7 +85,7 @@ const sum = curry((f, iter) =>go(
             // curry 적용    
             const total_price2 = sum(p => p.price * p.quantity);
 
-            log(total_price2);
+            log(total_price2(products));
 
             document.querySelector('#cart').innerHTML = `
     <table>
